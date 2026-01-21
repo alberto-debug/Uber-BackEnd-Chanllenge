@@ -21,9 +21,6 @@ public class HomeController {
         return response;
     }
 
-    public void test(){
-        System.out.println("changes to be made , today");
-    }
-
 }
+
 
