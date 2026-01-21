@@ -20,4 +20,10 @@ public class HomeController {
         response.put("docs", "/swagger-ui.html");
         return response;
     }
+
+    public void test(){
+        System.out.println("changes to be made , today");
+    }
+
 }
+
