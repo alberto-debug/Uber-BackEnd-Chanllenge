@@ -1,4 +1,4 @@
-package com.alberto.email_service.controller;
+package com.alberto.email_service.controllers;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
