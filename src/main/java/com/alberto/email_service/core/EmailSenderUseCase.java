@@ -1,4 +1,6 @@
 package com.alberto.email_service.core;
 
-public class EmailSenderUseCase {
+public interface EmailSenderUseCase {
+
+    void sendEmail(String to, String subject, String body);
 }
