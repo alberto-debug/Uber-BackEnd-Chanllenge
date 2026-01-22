@@ -1,9 +1,14 @@
 package com.alberto.email_service.infra.ses;
 
 import com.alberto.email_service.adapters.EmailSenderGateway;
+import com.alberto.email_service.core.exceptions.EmailServiceException;
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
+import com.amazonaws.services.simpleemail.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SesEmailSender implements EmailSenderGateway {
 
     private final AmazonSimpleEmailService amazonSimpleEmailService;
@@ -15,6 +20,22 @@ public class SesEmailSender implements EmailSenderGateway {
 
     @Override
     public void sendEmail(String to, String subject, String body) {
+        SendEmailRequest request = new SendEmailRequest()
+                .withSource("webtests8484@gmail.com")
+                .withDestination((new Destination()).withToAddresses(to))
+                .withMessage(new Message()
+                        .withSubject(new Content(subject))
+                        .withBody(new Body().withText(new Content(body)))
 
+                );
+
+        try{
+            this.amazonSimpleEmailService.sendEmail(request);
+
+        }catch (AmazonServiceException exception){
+
+            throw new EmailServiceException("Failure While Sending Email", exception);
+
+        }
     }
 }
