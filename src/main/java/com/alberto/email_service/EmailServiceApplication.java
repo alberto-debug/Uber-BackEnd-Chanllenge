@@ -18,5 +18,4 @@ public class EmailServiceApplication {
 		System.out.println("Application running at: http://localhost:8080");
 	}
 
-
 }
